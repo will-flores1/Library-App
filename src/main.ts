@@ -1,38 +1,43 @@
 // Import our custom CSS
-import './scss/styles.scss'
+import "./scss/styles.scss";
 // Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
-import Library from './library'
+import * as bootstrap from "bootstrap";
+import Library from "./library";
+import AddBookModel from "./addBookModal";
 
-class Main {
-  // region Properties
-  library;
-  localLibrary;
-  // endregion
+export default class Main {
+	// region Properties
+	library;
+	localLibrary;
+	addBookModal;
+	// endregion
 
-  // region Constructor
-  constructor() {
-     this.library = new Library(this)
-     this.localLibrary = this.getLocalStorage();
-  }
-  // endregion
+	// region Constructor
+	constructor() {
+		this.library = new Library(this);
+		this.localLibrary = this.getLocalStorage();
+		this.addBookModal = new AddBookModel(this);
+	}
+	// endregion
 
-  // region Methods
-  getLocalStorage() {
-    if (!localStorage.getItem("library")) {
-      localStorage.setItem("library", JSON.stringify([]))
-    }
-      return JSON.parse(localStorage.getItem("library")!)
-  }
+	// region Methods
+	getLocalStorage() {
+		if (!localStorage.getItem("library")) {
+			localStorage.setItem("library", JSON.stringify([]));
+		}
+		return JSON.parse(localStorage.getItem("library")!);
+	}
 
-  saveLocalStorage() {
-    localStorage.setItem("library", JSON.stringify(this.localLibrary))
-  }
+	saveLocalStorage() {
+		localStorage.setItem("library", JSON.stringify(this.localLibrary));
+	}
 
-  setUp() {
-    
-  }
-  // endregion
+	setUp() {
+		this.addBookModal.setUp();
+		this.library.display();
+	}
+	// endregion
 }
 
-const main = new Main
+const main = new Main();
+main.setUp();
