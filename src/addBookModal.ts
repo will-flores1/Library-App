@@ -1,5 +1,5 @@
 import Book from "./book";
-import * as bootstrap from "bootstrap";
+import { Modal } from "bootstrap";
 import Main from "./main";
 
 export default class AddBookModel {
@@ -10,7 +10,7 @@ export default class AddBookModel {
 	// region Constructor
 	constructor(main: Main) {
 		this.main = main;
-		this.modal = new bootstrap.Modal(document.querySelector("#addBookModal")!);
+		this.modal = new Modal(document.querySelector("#addBookModal")!);
 	}
 	// endregion
 
